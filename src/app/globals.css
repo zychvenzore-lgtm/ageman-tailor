@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --font-cormorant: var(--font-cormorant);
+  --font-montserrat: var(--font-montserrat);
+  --font-javanese: 'Noto Sans Javanese', serif;
+}
+
+:root {
+  --background: #FAFAF9;
+  --foreground: #0C0A09;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-montserrat), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(250, 250, 249, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(12, 10, 9, 0.05);
+}
+
+.dark-glass-panel {
+  background: rgba(28, 25, 23, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(250, 250, 249, 0.05);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAFAF9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #44403C;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #CA8A04;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.font-javanese {
+  font-family: var(--font-javanese), 'Noto Sans Javanese', serif;
+}

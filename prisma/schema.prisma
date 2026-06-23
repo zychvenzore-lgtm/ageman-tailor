@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model ThemeConfig {
+  id                 String   @id @default(uuid())
+  updatedAt          DateTime @updatedAt
+  heroTitle          String   @default("Ageman")
+  heroSubtitle       String   @default("Refined Javanese Craftsmanship")
+  primaryColor       String   @default("#1C1917")
+  secondaryColor     String   @default("#44403C")
+  accentColor        String   @default("#CA8A04")
+  activeBatikPattern String   @default("PARANG")
+  enableAnimations   Boolean  @default(true)
+  customStylesJson   String   @default("{}")
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  name        String
+  description String
+  philosophy  String
+  price       Float
+  image       String
+  category    String
+}
+
+model AdminUser {
+  id           String @id @default(uuid())
+  username     String @unique
+  passwordHash String
+}
+
+model Booking {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  clientName String
+  email      String
+  phone      String
+  date       String   // E.g., "2026-06-25"
+  timeSlot   String   // E.g., "10:00 - 11:30"
+  location   String   // "YOGYAKARTA" | "SURAKARTA"
+  notes      String?
+}
+
+model Order {
+  id           String   @id // Custom ID like "AGM-770"
+  createdAt    DateTime @default(now())
+  clientName   String
+  email        String
+  garmentType  String   // "SINGLE_BREASTED" | "DOUBLE_BREASTED" | "BESKAP_HERITAGE"
+  motif        String   // "PARANG" | "KAWUNG" | "MEGAMENDUNG"
+  accents      String   // "GOLD" | "SILVER" | "BRONZE"
+  collar       String   // "MANDARIN" | "CLASSIC" | "PEAK" | "NONE"
+  status       String   // "PENDING_APPROVAL" | "WAXING" | "DYEING" | "STRIPPING" | "CUTTING" | "STITCHING" | "COMPLETED"
+  statusStep   Int      // 0 = Pending Approval, 1 to 5 = Active stages
+  // Tailor Inputs (entered during fitting session)
+  measurements String?  // e.g., "Chest: 102cm, Sleeve: 60cm"
+  clothType    String?  // e.g., "Premium Silk"
+  liningColor  String?  // e.g., "Charcoal Satin"
+  tailorNotes  String?  // e.g., "Double vents"
+}
